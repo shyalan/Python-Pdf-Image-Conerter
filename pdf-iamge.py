@@ -50,8 +50,8 @@ class PDFConverterApp(QMainWindow):
 
         for page_number in range(pdf_document.page_count):
             page = pdf_document[page_number]
-            image_bytes = page.get_pixmap().get_buffer()
-            image = Image.open(BytesIO(image_bytes))
+            image_data = page.get_pixmap().get_image_data()
+            image = Image.open(BytesIO(image_data))
             
             # Save the image (you can customize the file name and format)
             image.save(f"page_{page_number + 1}.png")
